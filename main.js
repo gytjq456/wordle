@@ -1,6 +1,7 @@
 // ( Math.random() * ( 최대값 - 최소값 )  ) + 최소값
 let randomNam = Math.floor((Math.random() * (worldArr.length - 0)) + 0);
-let dab = worldArr[randomNam].name;
+let dabEn = worldArr[randomNam].en;
+let dabKr = worldArr[randomNam].kr;
 let inputArr;
 let inpuutLen = 5;
 let inputPos = 0;
@@ -9,6 +10,7 @@ let answerCnt = 1;
 let enChk = /[a-zA-Z]/; //영어
 let keyboard = document.querySelector(".keyboard");
 let keyboardBtn = document.querySelectorAll(".keyboard button");
+let layerpop = document.querySelector(".layerpop");
 
 init()
 
@@ -37,64 +39,113 @@ function spaceChk() {
 
 function enterClick() {
 	// 답 체크
+	let myInput = "";
+
 	$(keyboardBtn).removeClass("on")
 	$(keyboardBtn).blur();
 	if (spaceChk()) {
 		// 공백이 없는 경우
-		dab = dab.toUpperCase();
+		dabEn = dabEn.toUpperCase();
+
 		let count = 0;
 		for (let i = 0; i < inpuutLen; i++) {
 			let element = inputArr[i]
 			let value = element.textContent.toUpperCase();
-			if (value == dab[i]) {
-				element.classList.add("darkendGreen")
-				count++;
-			} else if (dab.includes(value)) {
-				element.classList.add("present")
-			} else {
-				element.classList.add("absent")
+			myInput += value;
+		}
+
+		var isWord = worldArr.filter(function (element, index, array) {
+			if (element.en.toUpperCase() == myInput) {
+				return true;
 			}
-			element.classList.remove('input')
-
-
-			keyboardBtn.forEach(item => {
-				let keyboardTxt = item.textContent.toUpperCase();
-				if (keyboardTxt == value) {
-					item.setAttribute("class", "");
-					if (element.classList.contains('darkendGreen')) {
-						item.classList.add("darkendGreen")
-					} else if (element.classList.contains('present')) {
-						item.classList.add("present")
-					} else {
-						item.classList.add("absent")
-					}
+		});
+		console.log(isWord);
+		if (isWord.length) {
+			// 내가 입력한 답이 있는 단어이면..
+			for (let i = 0; i < inpuutLen; i++) {
+				let element = inputArr[i]
+				let value = element.textContent.toUpperCase();
+				if (value == dabEn[i]) {
+					element.classList.add("darkendGreen")
+					count++;
+				} else if (dabEn.includes(value)) {
+					element.classList.add("present")
+				} else {
+					element.classList.add("absent")
 				}
-			});
-		}
+				element.classList.remove('input')
 
-		if (count == inpuutLen) {
-			// alert("정답")
-			alert(`${answerCnt}번 만에 정답을 맞췄습니다.`)
+				keyboardBtn.forEach(item => {
+					let keyboardTxt = item.textContent.toUpperCase();
+					if (keyboardTxt == value) {
+						item.setAttribute("class", "");
+						if (element.classList.contains('darkendGreen')) {
+							item.classList.add("darkendGreen")
+						} else if (element.classList.contains('present')) {
+							item.classList.add("present")
+						} else {
+							item.classList.add("absent")
+						}
+					}
+				});
+			}
+			if (count == inpuutLen) {
+				layerpop.style.display = "flex";
+				layerpop.style.opacity = "1";
+				let closeBtn = document.querySelector(".close button");
+				let nCount = document.querySelector(".nCount");
+				let answerTxt = document.querySelector(".answerTxt");
+				let meanTxt = document.querySelector(".meanTxt");
+				let congratsP = document.querySelectorAll(".congrats p")
+				let popBox = document.querySelector(".layerpop .box")
 
-			answer = true;
+				congratsP.forEach(element => {
+					element.classList.add("on")
+				});
+
+				setTimeout(() => {
+					popBox.style.opacity = "1"
+					congratsP.forEach(element => {
+						element.classList.add("remove")
+					});
+				}, 1500);
+
+				nCount.textContent = `${answerCnt}`;
+				answerTxt.textContent = `${dabEn}`;
+				meanTxt.textContent = `${dabKr}`;
+
+				closeBtn.addEventListener('click', function () {
+					window.location.reload();
+				})
+				answer = true;
+			} else {
+				let template = `<div class="box">
+				<div class="input"></div>
+				<div class="input"></div>
+				<div class="input"></div>
+				<div class="input"></div>
+				<div class="input"></div>
+				</div>`
+				let wordBox = document.querySelector(".wordBox")
+				wordBox.insertAdjacentHTML('beforeend', template)
+				wordBox.scrollTop = wordBox.scrollHeight;
+				answerCnt++;
+				init()
+			}
 		} else {
-			let template = `<div class="box">
-						<div class="input"></div>
-						<div class="input"></div>
-						<div class="input"></div>
-						<div class="input"></div>
-						<div class="input"></div>
-					</div>`
-			let wordBox = document.querySelector(".wordBox")
-			wordBox.insertAdjacentHTML('beforeend', template)
-			wordBox.scrollTop = wordBox.scrollHeight;
-			answerCnt++;
-			init()
+			// 내가 입력한 단어가 없으면..
+			console.log(inputArr);
+			$(inputArr).addClass("no")
+			setTimeout(() => {
+				$(inputArr).removeClass("no")
+			}, 1000);
 		}
+
 	} else {
 		alert("답을 입력해주세요")
 		return false;
 	}
+
 }
 
 function init() {

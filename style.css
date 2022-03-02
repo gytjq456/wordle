@@ -12,34 +12,91 @@
 body {
   background: #111;
 }
-
-.wordBox .box > div {
-  width: 62px;
-  height: 62px;
-  font-size: 40px;
-  box-sizing: border-box;
-  text-align: center;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  background: none;
-  color: #fff;
-  text-transform: uppercase;
-  outline: none;
-}
-
 .wrap {
-  max-width: 500px;
-  margin: 0 auto 23.5294117vh;
+	max-width: 500px;
+	/* margin: 0 auto 23.5294117vh; */
+	height: 100vh;
+	margin:0 auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
 }
+
+
+
 
 .wordBox {
-  display: flex;
+	display: flex;
   flex-direction: column;
   gap: 5px;
+	padding:0 20px;
   align-items: center;
-  height: calc(100vh - 462px);
-  /* height: 54.352941176vh; */
   overflow: auto;
-  margin-top: 23.5294117vh;
+	padding-top: 20px;
+	height: calc(100% - 230px);
+
+}
+
+.wordBox .tit  {
+	text-align: center;
+	color:#fff;
+	font-size: 4rem;
+	font-weight: 700;
+	margin-bottom: 6.458557vh;
+}
+
+.wordBox .box > div {
+	width: 62px;
+	height: 62px;
+	font-size: 40px;
+	box-sizing: border-box;
+	text-align: center;
+	border: 1px solid rgba(255, 255, 255, 0.5);
+	background: none;
+	color: #fff;
+	text-transform: uppercase;
+	outline: none;
+}
+.wordBox .box > div.no {
+	animation: shake 1s;
+}
+@keyframes shake {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	10% {
+		transform: rotate(45deg);
+	}
+
+	20% {
+		transform: rotate(-45deg);
+	}
+
+	30% {
+		transform: rotate(30deg);
+	}
+
+	40% {
+		transform: rotate(-30deg);
+	}
+
+	50% {
+		transform: rotate(10deg);
+	}
+
+	60% {
+		transform: rotate(-10deg);
+	}
+
+	70% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(0deg);
+	}
 }
 
 .wordBox .box > div.darkendGreen {
@@ -81,13 +138,14 @@ body {
 
 .keyboard {
   padding: 12px;
+	height: 210px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 6px;
-  position: fixed;
+  /* position: fixed;
   left: 0;
-  bottom: 0;
+  bottom: 0; */
   align-items: center;
   width: 100%;
   /* max-width: 500px; */
@@ -139,4 +197,120 @@ body {
   display: flex;
   gap: 6px 0;
   justify-content: center;
+}
+
+.layerpop {
+	position: fixed;
+	left:0;
+	top:0;
+	padding:20px;
+	height: 100%;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: rgba(0, 0, 0, 0.6);
+	transition: all 1s;
+	opacity: 0;
+	display: none;
+}
+
+.layerpop .congrats {
+	position: absolute;
+	color:#fff;
+	display: flex;
+	font-size: 6rem;
+	font-weight: 700;
+	overflow: hidden;
+	padding-top: 50px;
+}
+.layerpop .congrats p{
+	transform: translateY(100%) rotate(35deg);
+	transition: all 0.5s;
+	opacity: 0;
+}
+.layerpop .congrats p.on{
+	opacity: 1;
+	animation: txtAni 1s forwards;
+}
+
+.layerpop .congrats p:nth-child(2) {
+	animation-delay: 0.2s;
+}
+.layerpop .congrats p:nth-child(3) {
+	animation-delay: 0.3s;
+}
+.layerpop .congrats p:nth-child(4) {
+	animation-delay: 0.4s;
+}
+.layerpop .congrats p:nth-child(5) {
+	animation-delay: 0.5s;
+}
+.layerpop .congrats p.remove { opacity: 0.2;}
+
+
+@keyframes txtAni{
+	0% {
+		transform: translateY(100%) rotate(35deg);
+	}
+	50% {
+		transform: translateY(-50%) rotate(0);
+	}
+	100% {
+		transform: translateY(0) rotate(0);
+	}
+}
+
+.layerpop .close { 
+	position: absolute;
+	right:10px;
+	top:10px;
+}
+.layerpop .close button { 
+	font-size: 40px;
+	background: none;
+	color:#fff;
+	border:none;
+	cursor: pointer;
+}
+.layerpop .box{
+	max-width: 360px;
+	position: relative;
+	border-radius: 8px;
+	padding:60px 30px;
+	background: #121213;
+	min-height: 50%;
+	text-align: center;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	line-height: 1.5;
+	gap: 30px;
+	transition: all 1s;
+	color:#fff;
+	opacity: 0;
+}
+.layerpop .box > div{
+	
+}
+.layerpop .box span {
+	font-size: 1.5em;
+	font-weight: 700;
+
+}
+.layerpop span.block { 
+	display: block;
+	margin-top: 8px;
+}
+.layerpop span {
+	color: var(--darkendGreen);
+}
+
+
+@media screen and (max-width:640px){
+	.wordBox .tit {
+		font-size: 3rem;
+	}
 }
