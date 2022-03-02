@@ -1,145 +1,142 @@
 :root {
-	--darkendGreen :#538d4e;
-	--present : #b59f3b;
-	--absent : #3a3a3c;
+  --darkendGreen: #538d4e;
+  --present: #b59f3b;
+  --absent: #3a3a3c;
 }
 
 * {
-	padding:0;
-	margin:0;
-	box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 body {
-	background: #111;
+  background: #111;
 }
 
-.worldBox .box>div {
-	width: 62px;
-	height: 62px;
-	font-size: 40px;
-	box-sizing: border-box;
-	text-align: center;
-	border: 1px solid rgba(255, 255, 255, 0.5);
-	background: none;
-	color:#fff;
-	text-transform: uppercase;
-	outline: none;
+.wordBox .box > div {
+  width: 62px;
+  height: 62px;
+  font-size: 40px;
+  box-sizing: border-box;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: none;
+  color: #fff;
+  text-transform: uppercase;
+  outline: none;
 }
 
 .wrap {
-	max-width: 500px;
-	margin: 0 auto 200px;
+  max-width: 500px;
+  margin: 0 auto 23.5294117vh;
 }
 
-.worldBox {
-	display: flex;
-	flex-direction: column;
-	gap: 5px;
-	align-items: center;
-	height: calc(100vh - 462px);
-	overflow: auto;
-	margin-top: 200px;
+.wordBox {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+  height: calc(100vh - 462px);
+  /* height: 54.352941176vh; */
+  overflow: auto;
+  margin-top: 23.5294117vh;
 }
 
-.worldBox .box > div.darkendGreen {
-	background: var(--darkendGreen);
+.wordBox .box > div.darkendGreen {
+  background: var(--darkendGreen);
 }
 
-.worldBox .box > div.present {
-	background: var(--present);
+.wordBox .box > div.present {
+  background: var(--present);
 }
 
-.worldBox .box > div.absent {
-	background: var(--absent);
+.wordBox .box > div.absent {
+  background: var(--absent);
 }
 
-
-
-.worldBox::-webkit-scrollbar {
-	width: 10px;
-	/* 스크롤바의 너비 */
+.wordBox::-webkit-scrollbar {
+  width: 10px;
+  /* 스크롤바의 너비 */
 }
 
-.worldBox::-webkit-scrollbar-thumb {
-	height: 30%;
-	/* 스크롤바의 길이 */
-	background: #217af4;
-	/* 스크롤바의 색상 */
+.wordBox::-webkit-scrollbar-thumb {
+  height: 30%;
+  /* 스크롤바의 길이 */
+  background: #217af4;
+  /* 스크롤바의 색상 */
 
-	border-radius: 10px;
+  border-radius: 10px;
 }
 
-.worldBox::-webkit-scrollbar-track {
-	background: rgba(33, 122, 244, .1);
-	/*스크롤바 뒷 배경 색상*/
+.wordBox::-webkit-scrollbar-track {
+  background: rgba(33, 122, 244, 0.1);
+  /*스크롤바 뒷 배경 색상*/
 }
 
-
-.worldBox .box {
-	display: flex;
-	gap: 5px;
-	justify-content: center;
+.wordBox .box {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
 }
 
 .keyboard {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	gap: 6px;
-	position: fixed;
-	left:0;
-	bottom:0;
-	align-items: center;
-	width: 100%;
-	/* max-width: 500px; */
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  align-items: center;
+  width: 100%;
+  /* max-width: 500px; */
 }
 
 .keyboard button.darkendGreen {
-	background: var(--darkendGreen);
+  background: var(--darkendGreen);
 }
 .keyboard button.present {
-	background: var(--present);
+  background: var(--present);
 }
 .keyboard button.absent {
-	background: var(--absent);
+  background: var(--absent);
 }
 
-
 .keyboard button {
-	text-transform: uppercase;
-	margin-right: 6px;
-	background: #818384;
-	color: #fff;
-	height: 58px;
-	border-radius: 4px;
-	cursor: pointer;
-	display: flex;
-	padding:0;
-	align-items: center;
-	justify-content: center;
-	flex:1;
-	border:none;
+  text-transform: uppercase;
+  margin-right: 6px;
+  background: #818384;
+  color: #fff;
+  height: 58px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  border: none;
 }
 
 .keyboard button:last-of-type {
-	margin-right: 0;
+  margin-right: 0;
 }
 .keyboard button.on {
-	box-shadow: inset 0 0 10px rgba(0, 0, 0, 1);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 1);
 }
-
 
 .keyboard .space2 {
-	flex: 1.5;
-	font-size: 12px;
+  flex: 1.5;
+  font-size: 12px;
 }
 .keyboard .space {
-	flex:0.5;
+  flex: 0.5;
 }
 .keyboard .row {
-	max-width: 500px;
-	width: 100%;
-	display: flex;
-	gap: 6px 0;
-	justify-content: center;
+  max-width: 500px;
+  width: 100%;
+  display: flex;
+  gap: 6px 0;
+  justify-content: center;
 }

@@ -1,3 +1,4 @@
+// ( Math.random() * ( 최대값 - 최소값 )  ) + 최소값
 let randomNam = Math.floor((Math.random() * (worldArr.length - 0)) + 0);
 let dab = worldArr[randomNam].name;
 let inputArr;
@@ -8,7 +9,6 @@ let enChk = /[a-zA-Z]/; //영어
 let keyboard = document.querySelector(".keyboard");
 let keyboardBtn = document.querySelectorAll(".keyboard button");
 
-// ( Math.random() * ( 최대값 - 최소값 )  ) + 최소값
 init()
 // console.log(worldArr);
 
@@ -85,7 +85,10 @@ function enterClick() {
 						<div class="input"></div>
 						<div class="input"></div>
 					</div>`
-			document.querySelector(".worldBox").insertAdjacentHTML('beforeend', template);
+			let wordBox = document.querySelector(".wordBox")
+			wordBox.insertAdjacentHTML('beforeend', template)
+			wordBox.scrollTop = wordBox.scrollHeight;
+
 			init()
 		}
 	} else {
@@ -124,7 +127,8 @@ window.addEventListener('keydown', function (e) {
 	let keyVal = e.key;
 	let keyCode = e.keyCode;
 	let code = e.code;
-	if (code === 'Enter') {
+	console.log(code);
+	if (code === 'Enter' || code === 'NumpadEnter') {
 		if (!answer) {
 			enterClick();
 		}
