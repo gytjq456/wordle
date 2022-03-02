@@ -59,7 +59,6 @@ function enterClick() {
 				return true;
 			}
 		});
-		console.log(isWord);
 		if (isWord.length) {
 			// 내가 입력한 답이 있는 단어이면..
 			for (let i = 0; i < inpuutLen; i++) {
@@ -134,7 +133,6 @@ function enterClick() {
 			}
 		} else {
 			// 내가 입력한 단어가 없으면..
-			console.log(inputArr);
 			$(inputArr).addClass("no")
 			setTimeout(() => {
 				$(inputArr).removeClass("no")
