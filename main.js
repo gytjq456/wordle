@@ -5,12 +5,12 @@ let inputArr;
 let inpuutLen = 5;
 let inputPos = 0;
 let answer = false;
+let answerCnt = 1;
 let enChk = /[a-zA-Z]/; //영어
 let keyboard = document.querySelector(".keyboard");
 let keyboardBtn = document.querySelectorAll(".keyboard button");
 
 init()
-// console.log(worldArr);
 
 function effectiveness(value) {
 	//유효성 체크
@@ -39,13 +39,11 @@ function enterClick() {
 	// 답 체크
 	$(keyboardBtn).removeClass("on")
 	$(keyboardBtn).blur();
-	console.log(spaceChk());
 	if (spaceChk()) {
 		// 공백이 없는 경우
 		dab = dab.toUpperCase();
 		let count = 0;
 		for (let i = 0; i < inpuutLen; i++) {
-			console.log(i);
 			let element = inputArr[i]
 			let value = element.textContent.toUpperCase();
 			if (value == dab[i]) {
@@ -75,7 +73,9 @@ function enterClick() {
 		}
 
 		if (count == inpuutLen) {
-			alert("정답")
+			// alert("정답")
+			alert(`${answerCnt}번 만에 정답을 맞췄습니다.`)
+
 			answer = true;
 		} else {
 			let template = `<div class="box">
@@ -88,7 +88,7 @@ function enterClick() {
 			let wordBox = document.querySelector(".wordBox")
 			wordBox.insertAdjacentHTML('beforeend', template)
 			wordBox.scrollTop = wordBox.scrollHeight;
-
+			answerCnt++;
 			init()
 		}
 	} else {
@@ -127,7 +127,6 @@ window.addEventListener('keydown', function (e) {
 	let keyVal = e.key;
 	let keyCode = e.keyCode;
 	let code = e.code;
-	console.log(code);
 	if (code === 'Enter' || code === 'NumpadEnter') {
 		if (!answer) {
 			enterClick();
